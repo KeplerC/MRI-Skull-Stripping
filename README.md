@@ -18,6 +18,8 @@ TODO
 
 ### Dates 
 
+2018-5-13 Finished Baseline model(random forest)
+
 2018-5-12 Creating Starter codes 
 
 2018-5-4 Writing Introduction/Literature Reviews 
