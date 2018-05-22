@@ -6,17 +6,43 @@ Jingyue Shen(TODO)
 
 ### Introduction 
 
-Please refer to [#todo url]
+Please refer to
+http://kychen.xyz/2018/05/16/skullreview-2018/
+for a comprehensive review on
+* what is MRI
+* why do we need skull stripping
+* how does this work
+* a review of recent works
+* bridging skull stripping to machine learning
+* a plan of this work
 
+### Outline
 
+1) The baseline model should be sklearn-based supervised learning. These models are very easy to implement, so I will try out different supervised learning approach like random forest, decision trees and other linear models to see which one works better. 
+
+2) Autoencoder. We plan to stack CNNs and calculate RMSE on recovered image in Tensorflow. 
+
+3) Other Compressed Sensing approaches. Other compressed sensing generative models like VAE. 
+
+### I/O
+#### Feature Selection
+For feeding the entire image to CNN, I think dealing with matrices of size 300 200 should work fine on a laptop computer. 
+So we will use entire image for CNN. 
+
+For sklearn models, we choose 
+P(this pixel should be removed | (position x, position y), color, surrounding pixels as a local patch) 
+and currently, because of the limitation of my computer memory, the patch size is 4 * 4. One can update it by changing m in my source code. 
+
+#### Preprocessing
+For sklearn models, there is one extra step of performing **PCA** to it. 
 
 ### Code Snippets 
 
-TODO
-
-
+For all baseline codes and experiments, you can go to a blog post(http://kychen.xyz/2018/05/16/jpskull-2018/) or the jupyternotebook in the code. 
 
 ### Dates 
+
+2018-5-16 Finished up other sklearn models in jupyternotebook
 
 2018-5-13 Finished Baseline model(random forest)
 
