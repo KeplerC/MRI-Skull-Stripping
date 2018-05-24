@@ -7,16 +7,17 @@
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{xcolor}
+\usepackage{mathtools} 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
-\title{Skull Stripping for MRI: a deep neural network approach}
+\title{Skull Stripping for MRI: a deep Convolution Neural Network approach}
 
 \author{\IEEEauthorblockN{Kaiyuan Chen}
-\IEEEauthorblockA{\textit{Computer Science Depart.} \\
+\IEEEauthorblockA{\textit{Computer Science Department} \\
 \textit{University of California, Los Angeles}\\
-Los Angeles, United State \\
+Los Angeles, United States \\
 chenkaiyuan@ucla.edu}
 \and
 \IEEEauthorblockN{2\textsuperscript{nd} Given Name Surname}
@@ -29,7 +30,7 @@ email address}
 \maketitle
 
 \begin{abstract}
-In this project, we developed a deep Convolutional Neural Network(CNN) scheme to perform brain skull stripping on Magnetic Resonance Image(MRI). We analyzed previous works on machine learning including ensembled learning and linear models. By conducting series of experiments, we find weaknesses of popular machine models on scalability and strong assumption on structure of images. In order to reduce above problems, we propose a CNN approach to reach a higher scalablity and visual accuracy. 
+In this work, we developed a deep Convolutional Neural Network(CNN) scheme to perform brain skull stripping on Magnetic Resonance Image(MRI). We analyzed previous works on machine learning including ensembled learning and linear models. By conducting series of experiments, we find weaknesses of popular machine models, like linear models and ensembled learning methods on poor scalability and strong assumption on structure of images. In order to reduce above problems, we propose a CNN approach to reach a higher scalablity that can generalize to and visual accuracy. 
 
 \end{abstract}
 
@@ -44,10 +45,50 @@ As a preliminary step for further analysis, brain segmentation, i.e. skull strip
 
 Our contribution in this work is as following:
 \begin{itemize}
-\item We conducted a series of experiments on previous works of machine learning based skull stripping, which are based ensembled learning like random forest and linear models like SVM. 
-\item To solve problems of previous works, we adopt CNN in a scheme similar to autoencoder. 
-\item We manually labelled a lot of MRI images 
+\item We conduct a series of experiments on previous works of machine learning based skull stripping, including ensembled learning like random forest and linear models like support vector machine(SVM). Then we analyze their weaknesses from observation. 
+\item To solve problems of previous works, we adopt Convolution Neural Network(CNN) in a scheme similar to autoencoder. 
+\item We manually labelled a range of MRI images. As previous sklearn-based works focus heavily on structure of image(pixel color, position and color of surrounding pixel), we labeled various MRI examples that previous models would fail. 
 \end{itemize}
+
+\section{Problem Formulation}
+\subsection*{Problem Definition}
+We formulate our problem in the following way: given an image as matrix $X$, we can view it as a sum of skull matrix $S$ and stripped matrix $X'$, with dimension $w$ and $h$, as such 
+\[
+S_{ij} = 
+\begin{cases}
+X_{ij} &\text{if it is skull} \\
+0 &\text{otherwise}
+\end{cases}
+\]
+and 
+\[
+X'_{ij} = 
+\begin{cases}
+0 &\text{if it is skull} \\
+X_{ij} &\text{otherwise}
+\end{cases}
+\]
+and $X'_{ij}$ should be an output of our program. What we want is to optimize the following objective: 
+\[
+J(X') = \alpha{|X_{ij} -X'_{ij}|_2} + |S_{ij} - X'_{ij}|_2
+\]
+where $\alpha$ is a hyperparameter that can regularize the loss function and prevent overfitting. In this case, because brain stripping is a preprocessing step, we tend to penalize more to keep original brain structure the same, so we need a higher $\alpha$. 
+
+Then there are many ways to solve the problem, both in terms of discreminative models and generative models. For all the baseline models in this paper, one can calculate 
+\[
+P(S_{ij} = 0 | i, j, X_{ij}, \{X_{mn}\}_{d((m,n), (i, j)) < \varepsilon})
+\] 
+where d is a self-defined distance metric and $\varepsilon$ is a predefined patch size. 
+From a input data perspective, there are three major popular methods
+\begin{itemize}
+\item pixel-based. Choosing $\varepsilon = 0$ and only select features based on itself.
+\item patch-based. This method is the most popular for its scalability, by which one can choose distance to be Eulcidean distance or Manahttan distance and tune a self-defined $\varepsilon$ as a hyperparameter. 
+\item image-based. One simply feeds the whole image in. Larger $\varepsilon$ usually requires more computational power, but CNN method proposed in section IV will be image-based.
+\end{itemize}
+and latter experiments will show the difference on choosing features and $\varepsilon$.
+
+\subsection*{Data Preparation}
+TODO
 
 \section{Baseline Model}
 
