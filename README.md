@@ -26,21 +26,27 @@ for a comprehensive review on
 
 ### I/O
 #### Feature Selection
-For feeding the entire image to CNN, I think dealing with matrices of size 300 200 should work fine on a laptop computer. 
-So we will use entire image for CNN. 
 
 For sklearn models, we choose 
 P(this pixel should be removed | (position x, position y), color, surrounding pixels as a local patch) 
 and currently, because of the limitation of my computer memory, the patch size is 4 * 4. One can update it by changing m in my source code. 
 
+For CNN Autoencoder model, we feed the entire image to CNN, since we think dealing with matrices of size 256x256 should work fine on a laptop computer. Due to the limited amount of data (about 660 images of brains), we currently set batch size = 15
+and epoch time = 100 for training. One can modify the configuration by changing the hyperparameters in code/config.py.
+
 #### Preprocessing
 For sklearn models, there is one extra step of performing **PCA** to it. 
+
+For CNN model, we now simply divide each image's pixel value by 255. We are going to explore batch normalization technique later.
 
 ### Code Snippets 
 
 For all baseline codes and experiments, you can go to a blog post(http://kychen.xyz/2018/05/16/jpskull-2018/) or the jupyternotebook in the code. 
 
+For CNN Autoencoder code, you can find it in the code folder in this repository
+
 ### Dates 
+2018-5-26 Finished CNN Autoencoder models
 
 2018-5-16 Finished up other sklearn models in jupyternotebook
 
