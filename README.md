@@ -2,7 +2,7 @@
 
 Kaiyuan Chen(chenkaiyuan@ucla.edu)
 
-Jingyue Shen(TODO)
+Jingyue Shen(brianshen@ucla.edu)
 
 ### Introduction 
 
