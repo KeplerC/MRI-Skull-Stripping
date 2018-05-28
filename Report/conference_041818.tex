@@ -53,7 +53,11 @@ Our contribution in this work is as following:
 
 \section{Problem Formulation}
 \subsection*{Problem Definition}
-We formulate our problem in the following way: given an image as matrix $X$, we can view it as a sum of skull matrix $S$ and stripped matrix $X'$, with dimension $w$ and $h$, as such 
+We formulate our problem in the following way: given an image as matrix $X$, we can view it as a sum of skull matrix $S$ and stripped matrix $X'$, with dimension $w$ and $h$, i.e.
+\[
+X = S + X'
+\]
+where
 \[
 S_{ij} = 
 \begin{cases}
@@ -70,34 +74,52 @@ X_{ij} &\text{otherwise}
 \end{cases}
 \]
 and $X'_{ij}$ should be an output of our program. What we want is to optimize the following objective: 
-\[
+\begin{equation}
+\label{loss}
 J(X') = \alpha{|X_{ij} -X'_{ij}|_2} + |S_{ij} - X'_{ij}|_2
-\]
+\end{equation}
 where $\alpha$ is a hyperparameter that can regularize the loss function and prevent overfitting. In this case, because brain stripping is a preprocessing step, we tend to penalize more to keep original brain structure the same, so we need a higher $\alpha$. 
-
-Then there are many ways to solve the problem, both in terms of discriminative models and generative models. For all the baseline models in this paper, one can calculate 
-\[
-P(S_{ij} = 0 | i, j, X_{ij}, \{X_{mn}\}_{d((m,n), (i, j)) < \varepsilon})
-\] 
-where d is a self-defined distance metric and $\varepsilon$ is a predefined patch size. 
-From a input data perspective, there are three major popular methods
-\begin{itemize}
-\item pixel-based. Choosing $\varepsilon = 0$ and only select features based on itself.
-\item patch-based. This method is the most popular for its scalability, by which one can choose distance to be Eulcidean distance or Manahttan distance and tune a self-defined $\varepsilon$ as a hyperparameter. 
-\item image-based. One simply feeds the whole image in. Larger $\varepsilon$ usually requires more computational power, but CNN method proposed in section IV will be image-based.
-\end{itemize}
-and latter experiments will show the difference on choosing features and $\varepsilon$.
 
 \subsection*{Data Preparation}
 TODO
 
 \section{Baseline Model}
+There are many ways to solve the problem, both in terms of discriminative models and generative models. For all the baseline models in this paper, one can calculate 
+\begin{equation}
+\label{prob}
+P(S_{ij} = 0 | i, j, X_{ij}, \{X_{mn}\}_{d((m,n), (i, j)) < \varepsilon})
+\end{equation}
+where d is a self-defined distance metric and $\varepsilon$ is a predefined patch size. 
+
+\subsection{A comparison of Baseline Models}
+Because of the limitation of this report, we cannot elaborate on how each method works. We deliberately choose three popular methods that fit to calculate equation \ref{prob} with a loss function of equation \ref{loss}. We adopted three methods:
+\begin{itemize}
+\item Logistic Regression: a basic linear model that models $P(\text{label|features})$ by a linear combination of features
+\item Random Forest: a classic method for ensembled learning, which contains a bag of weak classifiers that conducts a vote for the final label
+\item Support Vector Machine(SVM): a linear model that draws a hyperplane between positive and negative examples.
+\end{itemize}
+and we train it with all the training set by sklearn models, and compare by prediction accuracy of equation \ref{prob}. 
+\includegraphics[scale = 0.4]{myfig.png}
+For the visibility of variance and small differences between other models, we have to scale it by putting logistic regression scores behind the legend. However, the pattern is pretty clear: logistic regression seems to have weak expressive power and cannot be trained with so many data; The random forest approach has lower cross validation score at the beginning, maybe because the expressive power is too high that it overfits the dataset. 
+
+\subsection{Feature Selection}
+From a input data perspective, there are three major popular methods
+\begin{itemize}
+\item pixel-based. Choosing $\varepsilon = 0$ and only select features based on itself.
+\item patch-based. This method is the most popular for its scalability, by which one can choose distance to be Eulcidean distance or Manahttan distance and tune a self-defined $\varepsilon$ as a hyperparameter. 
+\item image-based. One simply feeds the whole image in. Larger $\varepsilon$ usually requires more computational power. CNN method proposed in section IV will be image-based.
+\end{itemize}
+We conducted a series of experiments that show the difference on choosing features and $\varepsilon$. We performed random forest on all training data and chose different features(only color, position with x and y and color of local patches), then we normalize it in terms of difference between the one with combined. After six rounds of experiments, we get:
+
+\includegraphics[scale = 0.6]{Snipaste_2018-05-28_13-52-29.png}
+\subsection{Analysis}
+As we can see from above experiments, it seems to have overreliance on position and color itself, even their sum is more than the patch color.As a result, if we have the following image, it will not work:
 
 \section{CNN model}
 \subsection*{Intuition}
-Autoencoder is an unsupervised learning algorithm that tries to learn a function
- \[ h(x) \approx x \]
- The goal of this algorithm is to learn an efficient encoding of the given set of data so that the original data can be retrieved as flawlessly as possible. 
+We adpoted a CNN approach similar to autoencoder:
+\includegraphics[scale = 0.3]{Snipaste_2018-05-28_14-16-23.png}
+We train encoder and decoder together and by compression and convolution, we remove the skull by optimizing equation \ref{loss}. 
 
 Here we take a similar approach that tries to learn the most representative encoding of the brain structure by compressing and decompressing the given image using Convolutional Neural Network(CNN) model. 
 
