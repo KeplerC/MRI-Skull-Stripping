@@ -8,6 +8,7 @@
 \usepackage{textcomp}
 \usepackage{xcolor}
 \usepackage{mathtools} 
+\graphicspath{{../stripped_image/}}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
@@ -20,11 +21,11 @@
 Los Angeles, United States \\
 chenkaiyuan@ucla.edu}
 \and
-\IEEEauthorblockN{2\textsuperscript{nd} Given Name Surname}
-\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
-\textit{name of organization (of Aff.)}\\
-City, Country \\
-email address}
+\IEEEauthorblockN{Jingyue Shen}
+\IEEEauthorblockA{\textit{Computer Science Department} \\
+\textit{University of California, Los Angeles}\\
+Los Angeles, United States \\
+brianshen@ucla.edu}
 }
 
 \maketitle
@@ -74,7 +75,7 @@ J(X') = \alpha{|X_{ij} -X'_{ij}|_2} + |S_{ij} - X'_{ij}|_2
 \]
 where $\alpha$ is a hyperparameter that can regularize the loss function and prevent overfitting. In this case, because brain stripping is a preprocessing step, we tend to penalize more to keep original brain structure the same, so we need a higher $\alpha$. 
 
-Then there are many ways to solve the problem, both in terms of discreminative models and generative models. For all the baseline models in this paper, one can calculate 
+Then there are many ways to solve the problem, both in terms of discriminative models and generative models. For all the baseline models in this paper, one can calculate 
 \[
 P(S_{ij} = 0 | i, j, X_{ij}, \{X_{mn}\}_{d((m,n), (i, j)) < \varepsilon})
 \] 
@@ -93,6 +94,45 @@ TODO
 \section{Baseline Model}
 
 \section{CNN model}
+\subsection*{Intuition}
+Autoencoder is an unsupervised learning algorithm that tries to learn a function
+ \[ h(x) \approx x \]
+ The goal of this algorithm is to learn an efficient encoding of the given set of data so that the original data can be retrieved as flawlessly as possible. 
+
+Here we take a similar approach that tries to learn the most representative encoding of the brain structure by compressing and decompressing the given image using Convolutional Neural Network(CNN) model. 
+
+\subsection*{Model Setup}
+We adopt a basic CNN Autoencoder implementation. In encoder part of the model, we choose three convolution layers with three max pooling layers. For the decoder part, we use three convolution layers, three deconvolution layers and an extra reconstruction layer to reconstruct the input image. Note that since we need to reconstruct the skull-stripped images given full images as input, we choose the mean square error(MSE) between stripped images and reconstructed images as loss function, rather than the MSE of input and reconstructed images as used in autoencoders.
+\subsection*{Training}
+Due to the time consuming manual skull stripping process, we are only able to obtain about 700 original and stripped images as dataset. So we choose batch size to be 15 and the number of epoch to be 50 to train our model. We adopt a roughly 7-2-1 train-validation-test split to choose hyperparameters such as initial learning rate. And we found that learning rate $\alpha = 0.003$ gives best result. The image below is the loss during training process.\\
+\begin{center}
+    \includegraphics[scale=0.2]{loss.png}  
+\end{center}
+
+After many expriments, we find that our model is able to detect the region of brain in the image, but cannot reconstruct the stripped image with resolution as high as the input. Since skull stripping is a preprocessing step for other diagnosis, which requires high resolution brain images, we use reconstructed images as bitmasks applied to unstripped images.
+\subsection*{Testing}
+\includegraphics[scale = 0.2]{origin_0.png}
+\includegraphics[scale = 0.2]{origin_4.png}
+\includegraphics[scale = 0.2]{origin_6.png}
+\includegraphics[scale = 0.2]{origin_9.png}
+\includegraphics[scale = 0.2]{origin_14.png}
+\includegraphics[scale = 0.2]{origin_21.png}
+
+\includegraphics[scale = 0.2]{stripped_0.png}
+\includegraphics[scale = 0.2]{stripped_4.png}
+\includegraphics[scale = 0.2]{stripped_6.png}
+\includegraphics[scale = 0.2]{stripped_9.png}
+\includegraphics[scale = 0.2]{stripped_14.png}
+\includegraphics[scale = 0.2]{stripped_21.png}
+\\\\
+The above images are some of our test results. The first row are original unstripped images. And second row are learned stripped images. As shown in those images, our algorithm can perform skull stripping well on various slices of brains.
+In our dataset, each patient has about 20 brain images. Among all of patients, some of them have 1 to 2 images that are not stripped cleanly. The overall accuracy of our model is around $92\%$. One thing worth noting is that most of our model's inaccuracy comes from failing to strip a small portion of skull, as shown in the image below. In other words, the core brain parts remain intact, which is desirable for skull stripping.\\
+
+\hspace{8mm}
+\includegraphics[scale = 0.3]{origin_2.png}
+\hspace{22mm}
+\includegraphics[scale = 0.3]{stripped_2.png}
+
 
 \section{Discussion and Future Work}
 \begin{thebibliography}{00}
