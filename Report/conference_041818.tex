@@ -114,6 +114,18 @@ We conducted a series of experiments that show the difference on choosing featur
 \includegraphics[scale = 0.6]{Snipaste_2018-05-28_13-52-29.png}
 \subsection{Analysis}
 As we can see from above experiments, it seems to have overreliance on position and color itself, even their sum is more than the patch color.As a result, if we have the following image, it will not work:
+\begin{figure}[h!]
+\caption{Original image}
+\includegraphics[scale = 0.34]{Snipaste_2018-05-28_14-39-56.png} 
+\centering 
+\end{figure}
+\begin{figure}[h!]
+\centering 
+\caption{Processed image}
+\includegraphics[scale = 0.34]{Snipaste_2018-05-28_14-40-00.png}
+\end{figure}
+Because original picture has huge number of noise, when models like random forest is applied, local patch will not be fully expressive enough to cover this case, then it turns out to be a failure.
+
 
 \section{CNN model}
 \subsection*{Intuition}
