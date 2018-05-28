@@ -35,17 +35,20 @@ For CNN Autoencoder model, we feed the entire image to CNN, since we think deali
 and epoch time = 100 for training. One can modify the configuration by changing the hyperparameters in code/config.py.
 
 #### Preprocessing
-For sklearn models, there is one extra step of performing **PCA** to it. 
+For sklearn models,  we perform a comparison on local patch or other features.
 
 For CNN model, we now simply divide each image's pixel value by 255. We are going to explore batch normalization technique later.
 
 ### Code Snippets 
 
-For all baseline codes and experiments, you can go to a blog post(http://kychen.xyz/2018/05/16/jpskull-2018/) or the jupyternotebook in the code. 
+For all baseline codes and experiments, you can go to a blog post(http://kychen.xyz/2018/05/16/jpskull-2018/) or the **jupyter notebook** in the ./code. 
 
-For CNN Autoencoder code, you can find it in the code folder in this repository
+For CNN Autoencoder code, you can find it in the ./code folder in this repository.
 
 ### Dates 
+
+2018-5-28 Finished Report
+
 2018-5-26 Finished CNN Autoencoder models
 
 2018-5-16 Finished up other sklearn models in jupyternotebook
