@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  28 MAY 2018 16:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  28 MAY 2018 16:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -477,7 +477,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 <myfig.png, id=15, 578.16pt x 433.62pt>
 File: myfig.png Graphic file (type png)
  <use myfig.png>
-Package pdftex.def Info: myfig.png used on input line 102.
+Package pdftex.def Info: myfig.png used on input line 99.
 (pdftex.def)             Requested size: 231.2599pt x 173.44492pt.
 
 <../stripped_image/Snipaste_2018-05-28_13-52-29.png, id=17, 330.73563pt x 334.2
@@ -486,7 +486,7 @@ File: ../stripped_image/Snipaste_2018-05-28_13-52-29.png Graphic file (type png
 )
  <use ../stripped_image/Snipaste_2018-05-28_13-52-29.png>
 Package pdftex.def Info: ../stripped_image/Snipaste_2018-05-28_13-52-29.png use
-d on input line 114.
+d on input line 111.
 (pdftex.def)             Requested size: 198.44289pt x 200.55078pt.
 
 <../stripped_image/Snipaste_2018-05-28_14-39-56.png, id=18, 218.8175pt x 239.89
@@ -495,7 +495,7 @@ File: ../stripped_image/Snipaste_2018-05-28_14-39-56.png Graphic file (type png
 )
  <use ../stripped_image/Snipaste_2018-05-28_14-39-56.png>
 Package pdftex.def Info: ../stripped_image/Snipaste_2018-05-28_14-39-56.png use
-d on input line 119.
+d on input line 116.
 (pdftex.def)             Requested size: 74.39696pt x 81.56364pt.
 
 <../stripped_image/Snipaste_2018-05-28_14-40-00.png, id=19, 221.32687pt x 243.9
@@ -504,212 +504,209 @@ File: ../stripped_image/Snipaste_2018-05-28_14-40-00.png Graphic file (type png
 )
  <use ../stripped_image/Snipaste_2018-05-28_14-40-00.png>
 Package pdftex.def Info: ../stripped_image/Snipaste_2018-05-28_14-40-00.png use
-d on input line 125.
+d on input line 122.
 (pdftex.def)             Requested size: 75.25012pt x 82.92871pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-<../stripped_image/Snipaste_2018-05-28_14-16-23.png, id=20, 789.44937pt x 450.6
+[2 <./myfig.png> <../stripped_image/Snipaste_2018-05-28_13-52-29.png> <../strip
+ped_image/Snipaste_2018-05-28_14-39-56.png>]
+<../stripped_image/Snipaste_2018-05-28_14-16-23.png, id=28, 789.44937pt x 450.6
 8375pt>
 File: ../stripped_image/Snipaste_2018-05-28_14-16-23.png Graphic file (type png
 )
  <use ../stripped_image/Snipaste_2018-05-28_14-16-23.png>
 Package pdftex.def Info: ../stripped_image/Snipaste_2018-05-28_14-16-23.png use
-d on input line 137.
+d on input line 134.
 (pdftex.def)             Requested size: 236.83662pt x 135.20616pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 136--139
+Underfull \hbox (badness 10000) in paragraph at lines 133--136
 []
  []
 
-[2 <./myfig.png> <../stripped_image/Snipaste_2018-05-28_13-52-29.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 145--146
+
+Underfull \hbox (badness 10000) in paragraph at lines 142--143
 
  []
 
-<../stripped_image/loss.png, id=28, 688.5725pt x 440.64626pt>
+<../stripped_image/loss.png, id=29, 688.5725pt x 440.64626pt>
 File: ../stripped_image/loss.png Graphic file (type png)
 
 <use ../stripped_image/loss.png>
-Package pdftex.def Info: ../stripped_image/loss.png used on input line 147.
+Package pdftex.def Info: ../stripped_image/loss.png used on input line 144.
 (pdftex.def)             Requested size: 137.71205pt x 88.12769pt.
 
-<../stripped_image/origin_0.png, id=29, 185.0112pt x 185.0112pt>
+<../stripped_image/origin_0.png, id=30, 185.0112pt x 185.0112pt>
 File: ../stripped_image/origin_0.png Graphic file (type png)
 
 <use ../stripped_image/origin_0.png>
-Package pdftex.def Info: ../stripped_image/origin_0.png used on input line 152.
+Package pdftex.def Info: ../stripped_image/origin_0.png used on input line 149.
 
 (pdftex.def)             Requested size: 37.00157pt x 37.00157pt.
 
-<../stripped_image/origin_4.png, id=30, 185.0112pt x 185.0112pt>
+<../stripped_image/origin_4.png, id=31, 185.0112pt x 185.0112pt>
 File: ../stripped_image/origin_4.png Graphic file (type png)
 
 <use ../stripped_image/origin_4.png>
-Package pdftex.def Info: ../stripped_image/origin_4.png used on input line 153.
+Package pdftex.def Info: ../stripped_image/origin_4.png used on input line 150.
 
 (pdftex.def)             Requested size: 37.00157pt x 37.00157pt.
 
-<../stripped_image/origin_6.png, id=31, 185.0112pt x 185.0112pt>
+<../stripped_image/origin_6.png, id=32, 185.0112pt x 185.0112pt>
 File: ../stripped_image/origin_6.png Graphic file (type png)
 
 <use ../stripped_image/origin_6.png>
-Package pdftex.def Info: ../stripped_image/origin_6.png used on input line 154.
+Package pdftex.def Info: ../stripped_image/origin_6.png used on input line 151.
 
 (pdftex.def)             Requested size: 37.00157pt x 37.00157pt.
 
-<../stripped_image/origin_9.png, id=32, 185.0112pt x 185.0112pt>
+<../stripped_image/origin_9.png, id=33, 185.0112pt x 185.0112pt>
 File: ../stripped_image/origin_9.png Graphic file (type png)
 
 <use ../stripped_image/origin_9.png>
-Package pdftex.def Info: ../stripped_image/origin_9.png used on input line 155.
+Package pdftex.def Info: ../stripped_image/origin_9.png used on input line 152.
 
 (pdftex.def)             Requested size: 37.00157pt x 37.00157pt.
 
-<../stripped_image/origin_14.png, id=33, 185.0112pt x 185.0112pt>
+<../stripped_image/origin_14.png, id=34, 185.0112pt x 185.0112pt>
 File: ../stripped_image/origin_14.png Graphic file (type png)
 
 <use ../stripped_image/origin_14.png>
-Package pdftex.def Info: ../stripped_image/origin_14.png used on input line 156
+Package pdftex.def Info: ../stripped_image/origin_14.png used on input line 153
 .
 (pdftex.def)             Requested size: 37.00157pt x 37.00157pt.
 
-<../stripped_image/origin_21.png, id=34, 185.0112pt x 185.0112pt>
+<../stripped_image/origin_21.png, id=35, 185.0112pt x 185.0112pt>
 File: ../stripped_image/origin_21.png Graphic file (type png)
 
 <use ../stripped_image/origin_21.png>
-Package pdftex.def Info: ../stripped_image/origin_21.png used on input line 157
+Package pdftex.def Info: ../stripped_image/origin_21.png used on input line 154
 .
 (pdftex.def)             Requested size: 37.00157pt x 37.00157pt.
 
-<../stripped_image/stripped_0.png, id=35, 185.0112pt x 185.0112pt>
+<../stripped_image/stripped_0.png, id=36, 185.0112pt x 185.0112pt>
 File: ../stripped_image/stripped_0.png Graphic file (type png)
 
 <use ../stripped_image/stripped_0.png>
 Package pdftex.def Info: ../stripped_image/stripped_0.png used on input line 15
-9.
+6.
 (pdftex.def)             Requested size: 37.00157pt x 37.00157pt.
 
-<../stripped_image/stripped_4.png, id=36, 185.0112pt x 185.0112pt>
+<../stripped_image/stripped_4.png, id=37, 185.0112pt x 185.0112pt>
 File: ../stripped_image/stripped_4.png Graphic file (type png)
 
 <use ../stripped_image/stripped_4.png>
-Package pdftex.def Info: ../stripped_image/stripped_4.png used on input line 16
-0.
+Package pdftex.def Info: ../stripped_image/stripped_4.png used on input line 15
+7.
 (pdftex.def)             Requested size: 37.00157pt x 37.00157pt.
 
-<../stripped_image/stripped_6.png, id=37, 185.0112pt x 185.0112pt>
+<../stripped_image/stripped_6.png, id=38, 185.0112pt x 185.0112pt>
 File: ../stripped_image/stripped_6.png Graphic file (type png)
 
 <use ../stripped_image/stripped_6.png>
-Package pdftex.def Info: ../stripped_image/stripped_6.png used on input line 16
-1.
+Package pdftex.def Info: ../stripped_image/stripped_6.png used on input line 15
+8.
 (pdftex.def)             Requested size: 37.00157pt x 37.00157pt.
 
-<../stripped_image/stripped_9.png, id=38, 185.0112pt x 185.0112pt>
+<../stripped_image/stripped_9.png, id=39, 185.0112pt x 185.0112pt>
 File: ../stripped_image/stripped_9.png Graphic file (type png)
 
 <use ../stripped_image/stripped_9.png>
-Package pdftex.def Info: ../stripped_image/stripped_9.png used on input line 16
-2.
+Package pdftex.def Info: ../stripped_image/stripped_9.png used on input line 15
+9.
 (pdftex.def)             Requested size: 37.00157pt x 37.00157pt.
 
-<../stripped_image/stripped_14.png, id=39, 185.0112pt x 185.0112pt>
+<../stripped_image/stripped_14.png, id=40, 185.0112pt x 185.0112pt>
 File: ../stripped_image/stripped_14.png Graphic file (type png)
 
 <use ../stripped_image/stripped_14.png>
 Package pdftex.def Info: ../stripped_image/stripped_14.png used on input line 1
-63.
+60.
 (pdftex.def)             Requested size: 37.00157pt x 37.00157pt.
 
-<../stripped_image/stripped_21.png, id=40, 185.0112pt x 185.0112pt>
+<../stripped_image/stripped_21.png, id=41, 185.0112pt x 185.0112pt>
 File: ../stripped_image/stripped_21.png Graphic file (type png)
 
 <use ../stripped_image/stripped_21.png>
 Package pdftex.def Info: ../stripped_image/stripped_21.png used on input line 1
-64.
+61.
 (pdftex.def)             Requested size: 37.00157pt x 37.00157pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 159--168
+Underfull \hbox (badness 10000) in paragraph at lines 156--165
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 159--168
+Underfull \hbox (badness 10000) in paragraph at lines 156--165
 
  []
 
-<../stripped_image/origin_2.png, id=41, 185.0112pt x 185.0112pt>
+<../stripped_image/origin_2.png, id=42, 185.0112pt x 185.0112pt>
 File: ../stripped_image/origin_2.png Graphic file (type png)
 
 <use ../stripped_image/origin_2.png>
-Package pdftex.def Info: ../stripped_image/origin_2.png used on input line 170.
+Package pdftex.def Info: ../stripped_image/origin_2.png used on input line 167.
 
 (pdftex.def)             Requested size: 55.50378pt x 55.50378pt.
 
-<../stripped_image/stripped_2.png, id=42, 185.0112pt x 185.0112pt>
+<../stripped_image/stripped_2.png, id=43, 185.0112pt x 185.0112pt>
 File: ../stripped_image/stripped_2.png Graphic file (type png)
 
 <use ../stripped_image/stripped_2.png>
-Package pdftex.def Info: ../stripped_image/stripped_2.png used on input line 17
-2.
+Package pdftex.def Info: ../stripped_image/stripped_2.png used on input line 16
+9.
 (pdftex.def)             Requested size: 55.50378pt x 55.50378pt.
 
+Underfull \hbox (badness 10000) in paragraph at lines 174--175
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 175--176
+[]\OT1/ptm/m/n/8 Kalavathi,P. and V.B. Surya Prasath. ``Meth-ods on Skull
+ []
+
+
+Underfull \hbox (badness 3108) in paragraph at lines 175--176
+\OT1/ptm/m/n/8 Strip-ping of MRI Head Scan Im-ages -- a Re-view.'' Ad-vances
+ []
+
+
+Underfull \hbox (badness 3758) in paragraph at lines 175--176
+\OT1/ptm/m/n/8 in Pe-di-atries., U.S. Na-tional Li-brary of Medicine, June 2016
+,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 175--176
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--177
+
+ []
+
+[3 <../stripped_image/Snipaste_2018-05-28_14-40-00.png> <../stripped_image/Snip
+aste_2018-05-28_14-16-23.png> <../stripped_image/loss.png> <../stripped_image/o
+rigin_0.png> <../stripped_image/origin_4.png> <../stripped_image/origin_6.png> 
+<../stripped_image/origin_9.png> <../stripped_image/origin_14.png> <../stripped
+_image/origin_21.png> <../stripped_image/stripped_0.png> <../stripped_image/str
+ipped_4.png> <../stripped_image/stripped_6.png> <../stripped_image/stripped_9.p
+ng> <../stripped_image/stripped_14.png> <../stripped_image/stripped_21.png> <..
+/stripped_image/origin_2.png> <../stripped_image/stripped_2.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 177--178
 
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 178--179
-[]\OT1/ptm/m/n/8 Kalavathi,P. and V.B. Surya Prasath. ``Meth-ods on Skull
- []
-
-
-Underfull \hbox (badness 3108) in paragraph at lines 178--179
-\OT1/ptm/m/n/8 Strip-ping of MRI Head Scan Im-ages -- a Re-view.'' Ad-vances
- []
-
-
-Underfull \hbox (badness 3758) in paragraph at lines 178--179
-\OT1/ptm/m/n/8 in Pe-di-atries., U.S. Na-tional Li-brary of Medicine, June 2016
-,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 178--179
 
  []
 
-[3 <../stripped_image/Snipaste_2018-05-28_14-39-56.png> <../stripped_image/Snip
-aste_2018-05-28_14-40-00.png> <../stripped_image/Snipaste_2018-05-28_14-16-23.p
-ng> <../stripped_image/loss.png> <../stripped_image/origin_0.png> <../stripped_
-image/origin_4.png> <../stripped_image/origin_6.png> <../stripped_image/origin_
-9.png> <../stripped_image/origin_14.png> <../stripped_image/origin_21.png> <../
-stripped_image/stripped_0.png> <../stripped_image/stripped_4.png> <../stripped_
-image/stripped_6.png> <../stripped_image/stripped_9.png> <../stripped_image/str
-ipped_14.png> <../stripped_image/stripped_21.png> <../stripped_image/origin_2.p
-ng> <../stripped_image/stripped_2.png>]
+
 Underfull \hbox (badness 10000) in paragraph at lines 179--180
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 180--181
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 181--182
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 182--183
 
  []
 
@@ -722,28 +719,28 @@ Missing character: There is no â in font ptmr7t!
 Missing character: There is no € in font ptmr7t!
 Missing character: There is no  in font ptmr7t!
 
-Underfull \hbox (badness 7522) in paragraph at lines 183--184
+Underfull \hbox (badness 7522) in paragraph at lines 180--181
 []\OT1/ptm/m/n/8 Martn, et al. Ten-sor-Flow: Large-Scale Ma-chine Learn-ing on
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 183--184
+Underfull \hbox (badness 10000) in paragraph at lines 180--181
 \OT1/ptm/m/n/8 Het-ero-ge-neous Dis-tributed Sys-tems. [1402.1128] Long Short-
  []
 
 
-Underfull \hbox (badness 6316) in paragraph at lines 183--184
+Underfull \hbox (badness 6316) in paragraph at lines 180--181
 \OT1/ptm/m/n/8 Term Mem-ory Based Re-cur-rent Neu-ral Net-work Ar-chi-tec-tures
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 183--184
+Underfull \hbox (badness 10000) in paragraph at lines 180--181
 \OT1/ptm/m/n/8 for Large Vo-cab-u-lary Speech Recog-ni-tion, 16 Mar. 2016,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 183--184
+Underfull \hbox (badness 10000) in paragraph at lines 180--181
 
  []
 
@@ -781,7 +778,7 @@ b></usr/local/texlive/2017/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/lo
 cal/texlive/2017/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texli
 ve/2017/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2017/te
 xmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on conference_041818.pdf (4 pages, 1351510 bytes).
+Output written on conference_041818.pdf (4 pages, 1351558 bytes).
 PDF statistics:
  103 PDF objects out of 1000 (max. 8388607)
  45 compressed objects within 1 object stream

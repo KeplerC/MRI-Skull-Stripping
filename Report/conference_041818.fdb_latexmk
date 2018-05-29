@@ -1,9 +1,9 @@
 # Fdb version 3
-["pdflatex"] 1527549564 "/Users/jingyue/Desktop/MRI-Skull-Stripping/Report/conference_041818.tex" "conference_041818.pdf" "conference_041818" 1527549565
-  "../stripped_image/Snipaste_2018-05-28_13-52-29.png" 1527549513 22009 c8bb2552c0a52243f93f183d5f6fdc2c ""
-  "../stripped_image/Snipaste_2018-05-28_14-16-23.png" 1527549513 332691 dd84347ce119ab3fa7b10191360ba80d ""
-  "../stripped_image/Snipaste_2018-05-28_14-39-56.png" 1527549513 167834 442fbb482f7f154febbe72db2b687c65 ""
-  "../stripped_image/Snipaste_2018-05-28_14-40-00.png" 1527549513 103123 e037534449017c56f82cfc7356086630 ""
+["pdflatex"] 1527551013 "/Users/jingyue/Desktop/MRI-Skull-Stripping/Report/conference_041818.tex" "conference_041818.pdf" "conference_041818" 1527551015
+  "../stripped_image/Snipaste_2018-05-28_13-52-29.png" 1527549779 22009 c8bb2552c0a52243f93f183d5f6fdc2c ""
+  "../stripped_image/Snipaste_2018-05-28_14-16-23.png" 1527549779 332691 dd84347ce119ab3fa7b10191360ba80d ""
+  "../stripped_image/Snipaste_2018-05-28_14-39-56.png" 1527549779 167834 442fbb482f7f154febbe72db2b687c65 ""
+  "../stripped_image/Snipaste_2018-05-28_14-40-00.png" 1527549779 103123 e037534449017c56f82cfc7356086630 ""
   "../stripped_image/loss.png" 1527496651 229585 37094a82b34f987b65c95de2a029a7ae ""
   "../stripped_image/origin_0.png" 1527370830 63664 68f9fd07cf9928ff1fc228becfba222f ""
   "../stripped_image/origin_14.png" 1527371517 62300 8b2d0596af77cb002e64dde3241c7526 ""
@@ -19,7 +19,7 @@
   "../stripped_image/stripped_4.png" 1527370865 17224 c0492db5f566b1337f7119ebe7e97551 ""
   "../stripped_image/stripped_6.png" 1527370943 29104 b9ebc9b1cd7f176da9f0ddd67fa9d9d8 ""
   "../stripped_image/stripped_9.png" 1527370953 31365 25383e1a949ab69c1c185c298d277131 ""
-  "/Users/jingyue/Desktop/MRI-Skull-Stripping/Report/conference_041818.tex" 1527549560 14578 71d9c067074a32b62338124f501cb5a9 ""
+  "/Users/jingyue/Desktop/MRI-Skull-Stripping/Report/conference_041818.tex" 1527551011 14541 175ac0a319074376af74c541c3d47423 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc" 1480098666 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2017/texmf-dist/fonts/map/fontname/texfonts.map" 1480098670 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/adobe/times/ptmb7t.tfm" 1480098689 2172 fd0c924230362ff848a33632ed45dc23 ""
@@ -99,10 +99,10 @@
   "/usr/local/texlive/2017/texmf-var/web2c/pdftex/pdflatex.fmt" 1495593487 4129592 0e6cfee100d68e6d96b92c0258f2ff73 ""
   "/usr/local/texlive/2017/texmf.cnf" 1495593465 577 2b71d4d888f9e5560b2e99985915a9fa ""
   "IEEEtran.cls" 1527371647 281957 5b2e4fa15b0f7eabb840ebf67df4c0f7 ""
-  "conference_041818.aux" 1527549565 1233 337b4f464ef778dddabd98cb0a3d9f2e ""
-  "conference_041818.tex" 1527549560 14578 71d9c067074a32b62338124f501cb5a9 ""
-  "myfig.png" 1527549513 71557 c8ab505db31921bca074f1413fb92465 ""
+  "conference_041818.aux" 1527551015 1233 b19de92eab5547bd9edfbf69943d60e4 ""
+  "conference_041818.tex" 1527551011 14541 175ac0a319074376af74c541c3d47423 ""
+  "myfig.png" 1527549779 71557 c8ab505db31921bca074f1413fb92465 ""
   (generated)
-  "conference_041818.log"
   "conference_041818.aux"
+  "conference_041818.log"
   "conference_041818.pdf"
