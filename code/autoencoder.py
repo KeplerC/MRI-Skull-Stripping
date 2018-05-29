@@ -8,6 +8,15 @@ np.set_printoptions(threshold=np.nan)
 class CNNAutoencoder(object):
 
     def __init__(self, img_height, img_width, img_depth, learning_rate=1e-3, name=None):
+        '''
+        Create an CNN Autoencoder instance
+        @param 
+            img_height: each image's height
+            img_width: each image's width
+            learning_rate: the learning rate for training, default to be 0.001
+            name: the autoencoder's name
+
+        '''
         self.img_height = img_height
         self.img_width = img_width
         self.img_depth = img_depth
@@ -16,6 +25,7 @@ class CNNAutoencoder(object):
 
         self.step = 0
 
+    #build the model by creating tensorflow graph of each component of the model
     def build_graph(self):
 
         self._build_model()
@@ -29,7 +39,7 @@ class CNNAutoencoder(object):
         self.X = tf.placeholder(dtype=tf.float32, shape=(None, self.img_height, self.img_width, self.img_depth))
         self.y = tf.placeholder(dtype = tf.float32,shape=(None,self.img_height,self.img_width,self.img_depth))
         
-        # Encoder
+        # Encoder, three convolution layers, three max pooling layers
         self.x = tf.layers.conv2d(self.X, filters=16, kernel_size=(3, 3), activation=tf.nn.relu, padding='SAME', name='%s_conv1' % self.name)
         self.x = tf.layers.max_pooling2d(self.x, pool_size=(2, 2), strides=(2, 2), padding='SAME', name='%s_pool1' % self.name)
         self.x = tf.layers.conv2d(self.x, filters=8, kernel_size=(3, 3), activation=tf.nn.relu, padding='SAME', name='%s_conv2' % self.name)
@@ -37,7 +47,7 @@ class CNNAutoencoder(object):
         self.x = tf.layers.conv2d(self.x, filters=8, kernel_size=(3, 3), activation=tf.nn.relu, padding='SAME', name='%s_conv3' % self.name)
         self.encoded = tf.layers.max_pooling2d(self.x, pool_size=(2, 2), strides=(2, 2), padding='SAME', name='%s_encoded' % self.name)
 
-        # Decoder
+        # Decoder, three convolution layers, three deconvolution layers and one reconstruction layer
         self.x = tf.layers.conv2d(self.encoded, filters=8, kernel_size=(3, 3), activation=tf.nn.relu, padding='SAME', name='%s_conv4' % self.name)
         self.x = tf.layers.conv2d_transpose(self.x, filters=8, kernel_size=(2, 2), strides=(2, 2), name='%s_deconv4' % self.name)
         self.x = tf.layers.conv2d(self.x, filters=8, kernel_size=(3, 3), activation=tf.nn.relu, padding='SAME', name='%s_conv5' % self.name)
@@ -55,8 +65,17 @@ class CNNAutoencoder(object):
 
         self.loss_summary = tf.summary.scalar("Loss", self.loss)
 
-
+    
     def get_reconstructed_img(self, sess, X):
+        '''
+        Get stripped images of the input
+        @param
+            sess: tensorflow session
+            X: the test image set
+        
+        @return
+            the stripped images
+        '''
 
         feed_dict = {
             self.X: X

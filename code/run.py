@@ -7,7 +7,15 @@ import matplotlib.pyplot as plt
 from config import LEARNING_RATE, NUM_OF_EPOCHS, BATCH_SIZE
 import SimpleITK as sitk
 def train(X_train, y_train, num_epochs, batch_size, plot=False):
-   
+    '''
+    Train the model
+    @param:
+        X_train: the training set
+        y_train: the ground truth (skull-stripped version) of the training set
+        num_epochs: the number of epoches used for training
+        batch_size: the size of a single batch for training
+        plot: whether to plot some of the stripped images after training
+    '''
     
     print(X_train.shape)
     train_size, img_height, img_width, img_depth = X_train.shape[0],X_train.shape[1],X_train.shape[2],X_train.shape[3]
@@ -49,7 +57,16 @@ def train(X_train, y_train, num_epochs, batch_size, plot=False):
     
 
 def _train_batch(X_batch,y_batch,session, model, writer=None, print_every=50):
-    
+    '''
+    train the model using the given batch
+    @param
+        X_batch: the batch used for training the model from training set
+        y_batch: the ground truth of the batch
+        session: the tensorflow session
+        model: a CNNAutoencoder instance
+        writer: summary writer used for logging
+        print_every: the interval to print the value of loss function during training 
+    '''
     feed_dict = {
         model.X: X_batch,
         model.y: y_batch
@@ -67,6 +84,14 @@ def _train_batch(X_batch,y_batch,session, model, writer=None, print_every=50):
 
 
 def _plot(sess, figs, recons,num_to_plot):
+    '''
+    Plot the reconstructed images
+    @param:
+        sess: current tensorflow session
+        figs: the original unstripped images
+        recons: the corresponding skull-stripped images learned from figs
+        num_to_plot: the number of pairs of images to plot
+    '''
     plt.figure(figsize=(20, 12))
     for i in range(num_to_plot):
         plt.subplot(5, 2, 2 * i + 1)
@@ -83,6 +108,13 @@ def _plot(sess, figs, recons,num_to_plot):
 
 
 def predict(X_test):
+    '''
+    Perform skull stripping using trained model on unstripped images.
+    Plot the skull-stripped images
+    @param:
+        X_test: the images to be stripped
+
+    '''
     #restore the trained model
     print(X_test[0].shape)
     tf.reset_default_graph()

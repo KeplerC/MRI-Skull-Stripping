@@ -8,6 +8,19 @@ from random import shuffle
 
 
 def load_data(num_of_patients,path):
+    '''
+    Load the dataset and generate normalized training and testing sets.
+    We treat the MRI images of each patient as an unit, which means all images of a patient will either be in training or in test set.
+    @param
+        num_of_patients: the number of patients used in this model
+        path: the dataset's path
+    
+    @return:
+        X_train: the training set
+        y_train: the ground truth (skull-stripped version) of the training set
+        X_test: the testing set
+        y_test: the ground truth (skull-stripped version) of the test set
+    '''
     patient_ids = [i for i in range(num_of_patients)]
     shuffle(patient_ids)
     print(patient_ids)
@@ -125,6 +138,18 @@ def load_data(num_of_patients,path):
 
 
 def batch_generator(X, y, batch_size, num_epochs, shuffle=True):
+    '''
+    Generate batches from training set to train the model
+    @param:
+        X: the entire training set
+        y: the ground truth of training set
+        batch_size: the size of a single batch used for training
+        num_epochs: the number of epoches used for training
+        shuffle: whether to shuffle the training set when generating batches
+
+    @return:
+        return one batch at a time
+    '''
     data_size = X.shape[0]
     num_batches_per_epoch = data_size // batch_size + 1
 
