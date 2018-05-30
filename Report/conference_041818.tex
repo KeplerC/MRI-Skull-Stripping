@@ -31,7 +31,7 @@ brianshen@ucla.edu}
 \maketitle
 
 \begin{abstract}
-In this work, we developed a deep Convolutional Neural Network(CNN) scheme to perform brain skull stripping on Magnetic Resonance Image(MRI). We analyzed previous works on machine learning including ensembled learning and linear models. By conducting series of experiments, we find weaknesses of popular machine models, like linear models and ensembled learning methods on poor scalability and strong assumption on structure of images. In order to reduce above problems, we propose a CNN approach to reach a higher scalablity that can generalize to and visual accuracy. 
+In this work, we developed a deep Convolutional Neural Network(CNN) scheme to perform brain skull stripping on Magnetic Resonance Image(MRI). We analyzed previous works that employ machine learning algorithm including ensembled learning and linear models. By conducting series of experiments, we find weaknesses of those popular machine models like poor scalability and strong assumption on structure of images. In order to reduce above problems, we propose a CNN approach borrowed from autoencoders. Making use of the sparsity of images, we encode it to a more compact embedding and training a decoder to images with skull stripped. By experiments, we reach a higher scalability and better visual accuracy. 
 
 \end{abstract}
 
@@ -46,9 +46,9 @@ As a preliminary step for further analysis, brain segmentation, i.e. skull strip
 
 Our contribution in this work is as following:
 \begin{itemize}
-\item We conduct a series of experiments on previous works of machine learning based skull stripping, including ensembled learning like random forest and linear models like support vector machine(SVM). Then we analyze their weaknesses from observation. 
+\item We conducted a series of experiments on previous works of machine learning based skull stripping, including ensembled learning like random forest and linear models like support vector machine(SVM). Then we analyze their weaknesses from observation. 
 \item To solve problems of previous works, we adopt Convolution Neural Network(CNN) in a scheme similar to autoencoder. 
-\item We manually labelled a range of MRI images. As previous sklearn-based works focus heavily on structure of image(pixel color, position and color of surrounding pixel), we labeled various MRI examples that previous models would fail. 
+\item We manually labelled more than 700 MRI images. As previous sklearn-based works focus heavily on structure of image(pixel color, position and color of surrounding pixel), we also labeled various MRI examples that previous models would fail. 
 \end{itemize}
 
 \section{Problem Formulation}
@@ -80,6 +80,10 @@ J(X') = \alpha{|X_{ij} -X'_{ij}|_2} + |S_{ij} - X'_{ij}|_2
 \end{equation}
 where $\alpha$ is a hyperparameter that can regularize the loss function and prevent overfitting. In this case, because brain stripping is a preprocessing step, we tend to penalize more to keep original brain structure the same, so we need a higher $\alpha$. 
 
+\subsection{Data Preparation}
+We used a software named OsiriX to perform manual skull stripping. We successfully stripped about 700 images to serve as ground truth data.
+
+
 \section{Baseline Model}
 There are many ways to solve the problem, both in terms of discriminative models and generative models. For all the baseline models in this paper, one can calculate 
 \begin{equation}
@@ -106,11 +110,16 @@ From a input data perspective, there are three major popular methods
 \item patch-based. This method is the most popular for its scalability, by which one can choose distance to be Eulcidean distance or Manahttan distance and tune a self-defined $\varepsilon$ as a hyperparameter. 
 \item image-based. One simply feeds the whole image in. Larger $\varepsilon$ usually requires more computational power. CNN method proposed in section IV will be image-based.
 \end{itemize}
-We conducted a series of experiments that show the difference on choosing features and $\varepsilon$. We performed random forest on all training data and chose different features(only color, position with x and y and color of local patches), then we normalize it in terms of difference between the one with combined. After six rounds of experiments, we get:
+We conducted a series of experiments that show the difference on choosing features and $\varepsilon$. We performed random forest on all training data and chose different features(only color, position with x and y and color of local patches), then we normalize it in terms of difference between the one with combined. After six rounds of experiments, we get a breakdown pie chart on error of each feature:
 
-\includegraphics[scale = 0.6]{Snipaste_2018-05-28_13-52-29.png}
+\begin{figure}[h!]
+\centering 
+\includegraphics[scale = 0.4]{Snipaste_2018-05-28_13-52-29.png}
+\end{figure}
+It is obvious patch color contains more information than others, but position and color also takes great portion and their sum is beyond patch color. 
+
 \subsection{Analysis}
-As we can see from above experiments, it seems to have overreliance on position and color itself, even their sum is more than the patch color.As a result, if we have the following image, it will not work:
+As we can see from above experiments, it seems to have overreliance on position and color itself, even their sum is more than the patch color. As a result, if we have the following image in figure 1, it will not work:
 \begin{figure}[h!]
 \caption{Original image}
 \includegraphics[scale = 0.34]{Snipaste_2018-05-28_14-39-56.png} 
@@ -121,16 +130,11 @@ As we can see from above experiments, it seems to have overreliance on position 
 \caption{Processed image}
 \includegraphics[scale = 0.34]{Snipaste_2018-05-28_14-40-00.png}
 \end{figure}
-Because original picture has huge number of noise, when models like random forest is applied, local patch will not be fully expressive enough to cover this case, then it turns out to be a failure.
-
-\subsection*{Data Preparation}
-We used a software named OsiriX to perform manual skull stripping. We successfully stripped about 700 images to serve as ground truth data.
-
-\section{Baseline Model}
+Because original picture has huge number of noise, when models like random forest is applied, local patch will not be fully expressive enough to cover this case, then it turns out to be a failure in Figure 2.
 
 \section{CNN model}
 \subsection*{Intuition}
-We adpoted a CNN approach similar to autoencoder:
+We adopted a CNN approach similar to autoencoder:
 \includegraphics[scale = 0.3]{Snipaste_2018-05-28_14-16-23.png}
 We train encoder and decoder together and by compression and convolution, we remove the skull by optimizing equation \ref{loss}. 
 
@@ -144,7 +148,7 @@ Due to the time consuming manual skull stripping process, we are only able to ob
     \includegraphics[scale=0.2]{loss.png}  
 \end{center}
 
-After many expriments, we find that our model is able to detect the region of brain in the image, but cannot reconstruct the stripped image with resolution as high as the input. Since skull stripping is a preprocessing step for other diagnosis, which requires high resolution brain images, we use reconstructed images as bitmasks applied to unstripped images.
+After many experiments, we find that our model is able to detect the region of brain in the image, but cannot reconstruct the stripped image with resolution as high as the input. Since skull stripping is a preprocessing step for other diagnosis, which requires high resolution brain images, we use reconstructed images as bitmasks applied to unstripped images.
 \subsection*{Testing}
 \includegraphics[scale = 0.2]{origin_0.png}
 \includegraphics[scale = 0.2]{origin_4.png}
@@ -169,7 +173,11 @@ In our dataset, each patient has about 20 brain images. Among all of patients, s
 \includegraphics[scale = 0.3]{stripped_2.png}
 
 
-\section{Discussion and Future Work}
+\section{Conclusion and Future Work}
+In this work, we compared and analyzed different machine learning models applied to skull stripping, including Logistic Regression, SVM and random forest. Because of their weakness in strong assumptions in dataset, they are not robust to circumstances with high noises or improperly aligned skulls. Then we propose a CNN approach that is similar to autoencoder, and with this scheme, we can remove those noises and be robust to new structures. 
+
+However, as we acknowledged in previous section, it may fail to detect some parts of skull, and because of the nature of compression/reconstruction based model, it might have some loss in information on reconstructed image. As we already wrote 4 pages and requirement of this report should be 2 pages, we cannot cover more detailed experiments on how those reconstructed differ from original images and how those hyperparameters, like dropout, layers, will influence our results. We may do more and more rigorous experiments on CNN in the future. 
+
 \begin{thebibliography}{00}
 \bibitem{b1} G. Eason, B. Noble, and I. N. Sneddon, ``On certain integrals of Lipschitz-Hankel type involving products of Bessel functions,'' Phil. Trans. Roy. Soc. London, vol. A247, pp. 529--551, April 1955.\\
 \bibitem{b2} Kalavathi,P. and V.B. Surya Prasath. ``Methods on Skull Stripping of MRI Head Scan Images -- a Review.'' Advances in Pediatries., U.S. National Library of Medicine, June 2016, www.ncbi.nlm.nih.gov/pmc/articles/PMC4879034.\\
