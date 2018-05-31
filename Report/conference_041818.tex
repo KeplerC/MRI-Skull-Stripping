@@ -76,7 +76,7 @@ X_{ij} &\text{otherwise}
 and $X'_{ij}$ should be an output of our program. What we want is to optimize the following objective: 
 \begin{equation}
 \label{loss}
-J(X') = \alpha{|X_{ij} -X'_{ij}|_2} + |S_{ij} - X'_{ij}|_2
+J(X') = \alpha{|X_{ij} -X'_{ij}|_2} + |S_{ij} - X'^c_{ij}|_2
 \end{equation}
 where $\alpha$ is a hyperparameter that can regularize the loss function and prevent overfitting. In this case, because brain stripping is a preprocessing step, we tend to penalize more to keep original brain structure the same, so we need a higher $\alpha$. 
 
