@@ -4,6 +4,8 @@ Kaiyuan Chen(chenkaiyuan@ucla.edu)
 
 Jingyue Shen(brianshen@ucla.edu)
 
+More documents about this project is on http://kychen.xyz/2018/06/02/MRI-2018/. 
+
 ### Introduction 
 
 Please refer to
