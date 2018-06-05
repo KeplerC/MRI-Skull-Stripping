@@ -1,0 +1,1 @@
+I have emptied ./data folder.
