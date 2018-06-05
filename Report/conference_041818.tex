@@ -8,14 +8,14 @@
 \usepackage{textcomp}
 \usepackage{xcolor}
 \usepackage{mathtools} 
-\graphicspath{{../stripped_image/}}
+\graphicspath{{../results/}}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \begin{document}
 
 \title{Skull Stripping for MRI: a deep Convolution Neural Network approach}
 
-\author{\IEEEauthorblockN{Kaiyuan Chen}
+\author{\IEEEauthorblockN{Kaiyuan(Eric) Chen}
 \IEEEauthorblockA{\textit{Computer Science Department} \\
 \textit{University of California, Los Angeles}\\
 Los Angeles, United States \\
@@ -31,7 +31,7 @@ brianshen@ucla.edu}
 \maketitle
 
 \begin{abstract}
-In this work, we developed a deep Convolutional Neural Network(CNN) scheme to perform brain skull stripping on Magnetic Resonance Image(MRI). We analyzed previous works that employ machine learning algorithm including ensembled learning and linear models. By conducting series of experiments, we find weaknesses of those popular machine models like poor scalability and strong assumption on structure of images. In order to reduce above problems, we propose a CNN approach borrowed from autoencoders. Making use of the sparsity of images, we encode it to a more compact embedding and training a decoder to images with skull stripped. By experiments, we reach a higher scalability and better visual accuracy. 
+In this work\footnote{Our implementation is on https://github.com/KeplerC/MRI-Skull-Stripping. More information can also be found on http://kychen.xyz/2018/06/02/MRI-2018/.}, we developed a deep Convolutional Neural Network(CNN) scheme to perform brain skull stripping on Magnetic Resonance Image(MRI). We analyzed previous works that employ machine learning algorithm including ensembled learning and linear models. By conducting series of experiments, we find weaknesses of those popular machine models like poor scalability and strong assumption on structure of images. In order to reduce above problems, we propose a CNN approach borrowed from autoencoders. Making use of the sparsity of images, we encode it to a more compact embedding and training a decoder to images with skull stripped. By experiments, we reach a higher scalability and better visual accuracy. 
 
 \end{abstract}
 
@@ -100,7 +100,7 @@ Because of the limitation of this report, we cannot elaborate on how each method
 \item Support Vector Machine(SVM): a linear model that draws a hyperplane between positive and negative examples.
 \end{itemize}
 and we train it with all the training set by sklearn models, and compare by prediction accuracy of equation \ref{prob}. 
-\includegraphics[scale = 0.4]{myfig.png}
+
 For the visibility of variance and small differences between other models, we have to scale it by putting logistic regression scores behind the legend. However, the pattern is pretty clear: logistic regression seems to have weak expressive power and cannot be trained with so many data; The random forest approach has lower cross validation score at the beginning, maybe because the expressive power is too high that it overfits the dataset. 
 
 \subsection{Feature Selection}
@@ -112,30 +112,17 @@ From a input data perspective, there are three major popular methods
 \end{itemize}
 We conducted a series of experiments that show the difference on choosing features and $\varepsilon$. We performed random forest on all training data and chose different features(only color, position with x and y and color of local patches), then we normalize it in terms of difference between the one with combined. After six rounds of experiments, we get a breakdown pie chart on error of each feature:
 
-\begin{figure}[h!]
-\centering 
-\includegraphics[scale = 0.4]{Snipaste_2018-05-28_13-52-29.png}
-\end{figure}
+
 It is obvious patch color contains more information than others, but position and color also takes great portion and their sum is beyond patch color. 
 
 \subsection{Analysis}
-As we can see from above experiments, it seems to have overreliance on position and color itself, even their sum is more than the patch color. As a result, if we have the following image in figure 1, it will not work:
-\begin{figure}[h!]
-\caption{Original image}
-\includegraphics[scale = 0.34]{Snipaste_2018-05-28_14-39-56.png} 
-\centering 
-\end{figure}
-\begin{figure}[h!]
-\centering 
-\caption{Processed image}
-\includegraphics[scale = 0.34]{Snipaste_2018-05-28_14-40-00.png}
-\end{figure}
+As we can see from above experiments, it seems to have overreliance on position and color itself, even their sum is more than the patch color. As a result, if we have the following image in figure 1, it will not work.
 Because original picture has huge number of noise, when models like random forest is applied, local patch will not be fully expressive enough to cover this case, then it turns out to be a failure in Figure 2.
 
 \section{CNN model}
 \subsection*{Intuition}
 We adopted a CNN approach similar to autoencoder:
-\includegraphics[scale = 0.3]{Snipaste_2018-05-28_14-16-23.png}
+
 We train encoder and decoder together and by compression and convolution, we remove the skull by optimizing equation \ref{loss}. 
 
 Here we take a similar approach that tries to learn the most representative encoding of the brain structure by compressing and decompressing the given image using Convolutional Neural Network(CNN) model. 
@@ -144,33 +131,12 @@ Here we take a similar approach that tries to learn the most representative enco
 We adopt a basic CNN Autoencoder implementation. In encoder part of the model, we choose three convolution layers with three max pooling layers. For the decoder part, we use three convolution layers, three deconvolution layers and an extra reconstruction layer to reconstruct the input image. Note that since we need to reconstruct the skull-stripped images given full images as input, we choose the mean square error(MSE) between stripped images and reconstructed images as loss function, rather than the MSE of input and reconstructed images as used in autoencoders.
 \subsection*{Training}
 Due to the time consuming manual skull stripping process, we are only able to obtain about 700 original and stripped images as dataset. So we choose batch size to be 15 and the number of epoch to be 50 to train our model. We adopt a roughly 7-2-1 train-validation-test split to choose hyperparameters such as initial learning rate. And we found that learning rate $\alpha = 0.003$ gives best result. The image below is the loss during training process.\\
-\begin{center}
-    \includegraphics[scale=0.2]{loss.png}  
-\end{center}
 
 After many experiments, we find that our model is able to detect the region of brain in the image, but cannot reconstruct the stripped image with resolution as high as the input. Since skull stripping is a preprocessing step for other diagnosis, which requires high resolution brain images, we use reconstructed images as bitmasks applied to unstripped images.
 \subsection*{Testing}
-\includegraphics[scale = 0.2]{origin_0.png}
-\includegraphics[scale = 0.2]{origin_4.png}
-\includegraphics[scale = 0.2]{origin_6.png}
-\includegraphics[scale = 0.2]{origin_9.png}
-\includegraphics[scale = 0.2]{origin_14.png}
-\includegraphics[scale = 0.2]{origin_21.png}
 
-\includegraphics[scale = 0.2]{stripped_0.png}
-\includegraphics[scale = 0.2]{stripped_4.png}
-\includegraphics[scale = 0.2]{stripped_6.png}
-\includegraphics[scale = 0.2]{stripped_9.png}
-\includegraphics[scale = 0.2]{stripped_14.png}
-\includegraphics[scale = 0.2]{stripped_21.png}
-\\\\
-The above images are some of our test results. The first row are original unstripped images. And second row are learned stripped images. As shown in those images, our algorithm can perform skull stripping well on various slices of brains.
+The above images \ref{results} are some of our test results. The first row are original unstripped images. And second row are learned stripped images. As shown in those images, our algorithm can perform skull stripping well on various slices of brains.
 In our dataset, each patient has about 20 brain images. Among all of patients, some of them have 1 to 2 images that are not stripped cleanly. The overall accuracy of our model is around $92\%$. One thing worth noting is that most of our model's inaccuracy comes from failing to strip a small portion of skull, as shown in the image below. In other words, the core brain parts remain intact, which is desirable for skull stripping.\\
-
-\hspace{8mm}
-\includegraphics[scale = 0.3]{origin_2.png}
-\hspace{22mm}
-\includegraphics[scale = 0.3]{stripped_2.png}
 
 
 \section{Conclusion and Future Work}
@@ -189,4 +155,76 @@ However, as we acknowledged in previous section, it may fail to detect some part
 \bibitem{b8} Kleesiek J, Urban G, Hubert A, Schwarz D, Maier -Hein K, Bendszus M, Biller A. Deep MRI brain extraction: A 3D convolutional neural network for skull stripping. NeuroImage . 2016;129:460-469.
 
 \end{thebibliography}
+
+\newpage
+\begin{figure}[h!]
+\caption{Original Baseline image}
+\includegraphics[scale = 0.34]{Snipaste_2018-05-28_14-39-56.png} 
+\centering 
+\end{figure}
+\begin{figure}[h!]
+\centering 
+\caption{Processed Baseline image}
+\includegraphics[scale = 0.34]{Snipaste_2018-05-28_14-40-00.png}
+\end{figure}
+
+\begin{figure}[h!]
+\centering 
+\caption{learning curve}
+\includegraphics[scale = 0.4]{myfig.png}
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering 
+\caption{A breakdown of errors with and without this feature}
+\includegraphics[scale = 0.4]{Snipaste_2018-05-28_13-52-29.png}
+\end{figure}
+
+\begin{figure}[h!]
+\centering 
+\caption{An illustration of our CNN scheme}
+\includegraphics[scale = 0.3]{Snipaste_2018-05-28_14-16-23.png}
+\end{figure}
+
+\begin{figure}[h!]
+\centering 
+\caption{learning curve of CNN model}
+    \includegraphics[scale=0.2]{loss.png}  
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering 
+\caption{Our CNN results}
+\label{results}
+\includegraphics[scale = 0.2]{origin_0.png}
+\includegraphics[scale = 0.2]{origin_4.png}
+\includegraphics[scale = 0.2]{origin_6.png}
+\includegraphics[scale = 0.2]{origin_9.png}
+\includegraphics[scale = 0.2]{origin_14.png}
+\includegraphics[scale = 0.2]{origin_21.png}
+
+\includegraphics[scale = 0.2]{stripped_0.png}
+\includegraphics[scale = 0.2]{stripped_4.png}
+\includegraphics[scale = 0.2]{stripped_6.png}
+\includegraphics[scale = 0.2]{stripped_9.png}
+\includegraphics[scale = 0.2]{stripped_14.png}
+\includegraphics[scale = 0.2]{stripped_21.png}
+\end{figure}
+
+\begin{figure}[h!]
+\centering 
+\caption{Potential Errors on our model}
+
+\hspace{8mm}
+\includegraphics[scale = 0.3]{origin_2.png}
+\hspace{22mm}
+\includegraphics[scale = 0.3]{stripped_2.png}
+\end{figure}
+
+
+
+
+
 \end{document}
